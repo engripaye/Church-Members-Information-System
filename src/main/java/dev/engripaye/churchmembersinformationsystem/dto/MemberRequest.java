@@ -119,9 +119,6 @@ public class MemberRequest {
                 this.address,
                 this.suggestion,
                 this.prayerPoint
-
-
-
         );
     }
 }
