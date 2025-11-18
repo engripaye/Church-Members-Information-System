@@ -4,6 +4,7 @@ import dev.engripaye.churchmembersinformationsystem.model.Member;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class MemberRequest {
@@ -97,17 +98,24 @@ public class MemberRequest {
     }
 
     public Member toEntity(){
-        LocalDateTime dob = LocalDate.parse(this.dateOfBirth, DateTimeFormatter.ISO_LOCAL_DATE);
+
+
+        // parse the date(String -> localDate)
+        LocalDateTime dobLocalDate = LocalDate.parse(this.dateOfBirth, DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay();
+
+        // convert to LocalDate(00:00 time)
+        LocalDateTime dobDateTime = dobLocalDate.toLocalDate().atStartOfDay();
+
+        // calculate age
+        int calculatedAge = Period.between(LocalDate.from(dobDateTime), LocalDate.now()).getYears();
+
         return new Member(
                 null,
                 this.name,
                 this.sex,
                 this.contact,
-                dob,
-                this.address,
-                this.occupation,
-                this.suggestion,
-                this.prayerPoint
-        );
+                this.
+
+        )
     }
 }

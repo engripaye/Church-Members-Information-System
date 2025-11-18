@@ -25,6 +25,9 @@ public class Member {
     private LocalDateTime dateOfBirth;
 
     @Column(nullable = false)
+    private Integer age; // calculated from DOB
+
+    @Column(nullable = false)
     private String address;
 
     @Column(columnDefinition = "TEXT")
@@ -37,16 +40,19 @@ public class Member {
 
     }
 
-    public Member(Long id, String name, String sex, String contact, LocalDateTime dateOfBirth, String address, String suggestion, String prayerPoint) {
+    public Member(Long id, String name, String sex, String contact, LocalDateTime dateOfBirth, Integer age, String address, String suggestion, String prayerPoint) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.contact = contact;
         this.dateOfBirth = dateOfBirth;
+        this.age = age;
         this.address = address;
         this.suggestion = suggestion;
         this.prayerPoint = prayerPoint;
     }
+
+
 
     public Long getId() {
         return id;
@@ -78,6 +84,14 @@ public class Member {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public LocalDateTime getDateOfBirth() {
