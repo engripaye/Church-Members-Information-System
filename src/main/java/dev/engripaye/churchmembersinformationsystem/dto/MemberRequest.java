@@ -114,8 +114,14 @@ public class MemberRequest {
                 this.name,
                 this.sex,
                 this.contact,
-                this.
+                dobDateTime,
+                calculatedAge,
+                this.address,
+                this.suggestion,
+                this.prayerPoint
 
-        )
+
+
+        );
     }
 }
