@@ -13,4 +13,8 @@ public class MemberService {
         this.memberRepository = memberRepository;
         this.googleSheetService = googleSheetService;
     }
+
+
+
+
 }
