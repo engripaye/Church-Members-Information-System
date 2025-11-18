@@ -29,7 +29,7 @@ public class MemberService {
         Member saved = memberRepository.save(member);
 
         // write to Google Sheets
-        googleSheetService.append(member);
+        googleSheetService.appendMember(member);
 
         return saved;
 
