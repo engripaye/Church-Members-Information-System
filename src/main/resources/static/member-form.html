@@ -5,43 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Church Members Information Form</title>
 
+    <!-- Professional Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            background: #eef2f7;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 520px;
             margin: 40px auto;
             background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
         }
 
         h2 {
             text-align: center;
-            color: #2b2b2b;
+            color: #1d1d1d;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         label {
-            font-weight: bold;
+            font-weight: 500;
             margin-top: 15px;
             display: block;
             color: #333;
+            font-size: 15px;
         }
 
         input, select, textarea {
             width: 100%;
             padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
+            margin-top: 6px;
+            border: 1px solid #c9c9c9;
             border-radius: 8px;
             font-size: 15px;
-            box-sizing: border-box;
+            outline: none;
+            background: #fafafa;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #1e4dd8;
+            background: #fff;
         }
 
         textarea {
@@ -54,40 +67,78 @@
             padding: 14px;
             background: #1e4dd8;
             color: #fff;
-            font-size: 18px;
+            font-size: 17px;
+            font-weight: 500;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
+            transition: 0.3s ease;
         }
 
         button:hover {
-            background: #153aa1;
+            background: #163bb1;
         }
 
-        .message {
-            margin-top: 15px;
+        /* Popup Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 85%;
+            max-width: 350px;
             text-align: center;
-            font-size: 16px;
-            font-weight: bold;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            animation: slideUp 0.35s ease;
         }
 
-        .success {
-            color: green;
+        .popup h3 {
+            margin: 0;
+            color: #1e4dd8;
         }
 
-        .error {
-            color: red;
+        .popup p {
+            margin: 12px 0 20px;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .popup button {
+            background: #1e4dd8;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media screen and (max-width: 600px) {
             .container {
                 margin: 15px;
-                padding: 20px;
+                padding: 22px;
             }
-
             h2 {
-                font-size: 22px;
+                font-size: 20px;
             }
         }
     </style>
@@ -96,45 +147,56 @@
 <body>
 
 <div class="container">
-    <h2>Church Members Information Form</h2>
+    <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
 
-    <div id="responseMessage" class="message"></div>
-
-    <form id="memberForm">
+    <form id="memberForm" autocomplete="off">
 
         <label>Name:</label>
-        <input type="text" id="name" placeholder="Enter your Full Name" required>
+        <input type="text" id="name" placeholder="Enter your Full Name" autocomplete="off" required>
 
         <label>Sex:</label>
-        <select id="sex" required>
+        <select id="sex" autocomplete="off" required>
             <option value="">-- Select --</option>
             <option>Male</option>
             <option>Female</option>
         </select>
 
         <label>Contact:</label>
-        <input type="text" id="contact" placeholder="Enter your 11 digits phone number" required>
+        <input type="text" id="contact" autocomplete="off" placeholder="Enter your 11 digits phone number" required>
 
         <label>Date of Birth:</label>
-        <input type="date" id="dateOfBirth" required>
+        <input type="date" id="dateOfBirth" autocomplete="off" required>
 
         <label>Address:</label>
-        <input type="text" id="address" placeholder="Enter your home address" required>
+        <input type="text" id="address" autocomplete="off" placeholder="Enter your home address" required>
 
         <label>Occupation:</label>
-        <input type="text" id="occupation" placeholder="if retired or a student, simply indicate." required>
+        <input type="text" id="occupation" autocomplete="off" placeholder="If retired or a student, simply indicate." required>
 
         <label>Your Suggestion:</label>
-        <textarea id="suggestion" placeholder="Your suggestions are highly welcome for the benefit of the Church growth"></textarea>
+        <textarea id="suggestion" autocomplete="off" placeholder="Your suggestions are highly welcome for the benefit of the Church growth"></textarea>
 
         <label>Your Prayer Point:</label>
-        <textarea id="prayerPoint" placeholder="What do you want God to do for you before 2025 runs out?"></textarea>
+        <textarea id="prayerPoint" autocomplete="off" placeholder="What do you want God to do for you before 2025 runs out?"></textarea>
 
         <button type="submit">Submit</button>
     </form>
 </div>
 
+<!-- Success Popup Modal -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+        <h3>✔ Submitted Successfully</h3>
+        <p>Your information has been saved. Thank you!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+
 <script>
+    function closePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+    }
+
     document.getElementById("memberForm").addEventListener("submit", async function (e) {
         e.preventDefault();
 
@@ -149,8 +211,6 @@
             prayerPoint: document.getElementById("prayerPoint").value
         };
 
-        const responseMessage = document.getElementById("responseMessage");
-
         try {
             const response = await fetch("/api/members", {
                 method: "POST",
@@ -159,18 +219,14 @@
             });
 
             if (response.ok) {
-                responseMessage.className = "message success";
-                responseMessage.textContent = "Thank you! Your information has been submitted successfully.";
-
                 document.getElementById("memberForm").reset();
+                document.getElementById("popupOverlay").style.display = "flex";
             } else {
-                responseMessage.className = "message error";
-                responseMessage.textContent = "Submission failed. Please try again.";
+                alert("Submission failed. Please try again.");
             }
 
         } catch (error) {
-            responseMessage.className = "message error";
-            responseMessage.textContent = "Network error. Please try again.";
+            alert("Network error. Please try again.");
         }
     });
 </script>
