@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Members Information Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2b2b2b;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #1e4dd8;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #153aa1;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Church Members Information Form</h2>
+
+    <div id="responseMessage" class="message"></div>
+
+    <form id="memberForm">
+
+        <label>Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Sex:</label>
+        <select id="sex" required>
+            <option value="">-- Select --</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <label>Contact:</label>
+        <input type="text" id="contact" required>
+
+        <label>Date of Birth:</label>
+        <input type="date" id="dateOfBirth" required>
+
+        <label>Address:</label>
+        <input type="text" id="address" required>
+
+        <label>Occupation:</label>
+        <input type="text" id="occupation" required>
+
+        <label>Your Suggestion:</label>
+        <textarea id="suggestion"></textarea>
+
+        <label>Your Prayer Point:</label>
+        <textarea id="prayerPoint"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("memberForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("name").value,
+            sex: document.getElementById("sex").value,
+            contact: document.getElementById("contact").value,
+            dateOfBirth: document.getElementById("dateOfBirth").value,
+            address: document.getElementById("address").value,
+            occupation: document.getElementById("occupation").value,
+            suggestion: document.getElementById("suggestion").value,
+            prayerPoint: document.getElementById("prayerPoint").value
+        };
+
+        const responseMessage = document.getElementById("responseMessage");
+
+        try {
+            const response = await fetch("/api/members", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                responseMessage.className = "message success";
+                responseMessage.textContent = "Thank you! Your information has been submitted successfully.";
+
+                document.getElementById("memberForm").reset();
+            } else {
+                responseMessage.className = "message error";
+                responseMessage.textContent = "Submission failed. Please try again.";
+            }
+
+        } catch (error) {
+            responseMessage.className = "message error";
+            responseMessage.textContent = "Network error. Please try again.";
+        }
+    });
+</script>
+
+</body>
+</html>
