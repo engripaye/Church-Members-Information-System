@@ -150,11 +150,11 @@
             cursor: pointer;
         }
 
-        /* Form Header with Logo */
+        /* Form Header with Logo on the Left */
         .form-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 15px; /* spacing between logo and text */
             margin-bottom: 25px;
         }
 
@@ -194,11 +194,11 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                gap: 10px;
             }
 
             .form-header h2 {
                 font-size: 20px;
-                margin-bottom: 12px;
             }
 
             .church-logo {
@@ -214,8 +214,8 @@
 
 <div class="overlay">
     <div class="form-header">
-        <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
         <img src="image/logo.png" alt="Church Logo" class="church-logo">
+        <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
     </div>
     <form id="memberForm" autocomplete="off">
 
