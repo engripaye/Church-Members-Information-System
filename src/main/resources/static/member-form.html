@@ -5,31 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Church Members Information Form</title>
 
-    <!-- Professional Google Font -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        /* Animated Background */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #eef2f7;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            background: #000;
         }
 
-        .container {
-            max-width: 520px;
-            margin: 40px auto;
-            background: #fff;
+        /* Background image layer */
+        .bg {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100%;
+            width: 100%;
+            background: url('https://images.unsplash.com/photo-1599861826233-760a7c0c97c0?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            animation: zoomBG 25s ease-in-out infinite alternate;
+            filter: brightness(0.65);
+        }
+
+        @keyframes zoomBG {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.07); }
+        }
+
+        /* Form Container */
+        .overlay {
+            background: rgba(255, 255, 255, 0.94);
             padding: 30px;
             border-radius: 14px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            max-width: 520px;
+            width: 90%;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            margin: 40px auto;
         }
 
         h2 {
             text-align: center;
             color: #1d1d1d;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.4;
         }
 
@@ -50,6 +74,7 @@
             font-size: 15px;
             outline: none;
             background: #fafafa;
+            box-sizing: border-box;
         }
 
         input:focus, textarea:focus, select:focus {
@@ -91,6 +116,7 @@
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s ease;
+            z-index: 999;
         }
 
         .popup {
@@ -120,6 +146,8 @@
             padding: 10px 20px;
             border-radius: 6px;
             font-size: 15px;
+            color: #fff;
+            cursor: pointer;
         }
 
         @keyframes fadeIn {
@@ -132,11 +160,13 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* Mobile Responsive */
         @media screen and (max-width: 600px) {
-            .container {
-                margin: 15px;
-                padding: 22px;
+            .overlay {
+                padding: 20px;
+                margin: 20px;
             }
+
             h2 {
                 font-size: 20px;
             }
@@ -146,13 +176,15 @@
 
 <body>
 
-<div class="container">
+<div class="bg"></div> <!-- Animated Background -->
+
+<div class="overlay">
     <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
 
     <form id="memberForm" autocomplete="off">
 
         <label>Name:</label>
-        <input type="text" id="name" placeholder="Enter your Full Name" autocomplete="off" required>
+        <input type="text" id="name" autocomplete="off" placeholder="Enter your Full Name" required>
 
         <label>Sex:</label>
         <select id="sex" autocomplete="off" required>
@@ -183,7 +215,7 @@
     </form>
 </div>
 
-<!-- Success Popup Modal -->
+<!-- Success Popup -->
 <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
         <h3>✔ Submitted Successfully</h3>
