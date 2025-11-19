@@ -40,15 +40,15 @@
 
         /* Form Container */
         .overlay {
-            background: rgba(255, 255, 255, 0.94);
-            padding: 30px;
-            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 30px;
+            border-radius: 16px;
             max-width: 520px;
             width: 90%;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             margin: 40px auto;
+            transition: 0.3s ease;
         }
-
         h2 {
             text-align: center;
             color: #1d1d1d;
@@ -150,6 +150,29 @@
             cursor: pointer;
         }
 
+        /* Form Header with Logo */
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e1e1e;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .church-logo {
+            width: 60px;       /* professional small size */
+            height: auto;
+            border-radius: 8px; /* subtle rounded corners */
+            object-fit: contain;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -160,15 +183,26 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive Adjustments */
         @media screen and (max-width: 600px) {
             .overlay {
-                padding: 20px;
-                margin: 20px;
+                padding: 25px 20px;
+                margin: 20px auto;
             }
 
-            h2 {
+            .form-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .form-header h2 {
                 font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .church-logo {
+                width: 50px;
             }
         }
     </style>
@@ -179,8 +213,10 @@
 <div class="bg"></div> <!-- Animated Background -->
 
 <div class="overlay">
-    <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
-
+    <div class="form-header">
+        <h2>MFM IPAJA YOUTH CHURCH <br> Membership Form</h2>
+        <img src="image/logo.png" alt="Church Logo" class="church-logo">
+    </div>
     <form id="memberForm" autocomplete="off">
 
         <label>Name:</label>
