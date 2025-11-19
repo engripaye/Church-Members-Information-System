@@ -3,6 +3,7 @@ package dev.engripaye.churchmembersinformationsystem.service;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import dev.engripaye.churchmembersinformationsystem.model.Member;
@@ -63,6 +64,17 @@ public class GoogleSheetService {
                 member.getSuggestion(),
                 member.getPrayerPoint()
         );
+
+        ValueRange body = new ValueRange().setRange(List.of().toString());
+
+        try {
+            sheets.spreadsheets().values()
+                    .append(sheetId, "Sheet1A2!", body)
+                    .setValueInputOption("RAW")
+                    .execute();
+        }catch (Exception e){
+            throw new RuntimeException("Failed to write member to Google sheet " + e);
+        }
 
 
     }
