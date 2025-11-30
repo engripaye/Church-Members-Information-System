@@ -14,6 +14,8 @@ import java.util.List;
 @RequestMapping("/api/members")
 public class MemberController {
 
+    // UPDATED CONTROLLER SERVICE
+
     private final MemberService memberService;
 
 
